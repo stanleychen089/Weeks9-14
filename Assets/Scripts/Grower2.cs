@@ -5,7 +5,6 @@ public class Grower2 : MonoBehaviour
 {
     public Transform treeTransform;
     public Transform duckAppleTransform;
-    public float appleDelay = 1;
 
     Coroutine doTheGrowingCoroutine;
     Coroutine growTreeCoroutine;
