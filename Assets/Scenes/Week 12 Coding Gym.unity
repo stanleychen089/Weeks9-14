@@ -8977,6 +8977,42 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cffdf38eb08ee0f4f80d50c1a7fcfb2f, type: 3}
   - {fileID: 8300000, guid: c77d439c923f0284490a617a7d3af680, type: 3}
   - {fileID: 8300000, guid: 67f7477dffb42794abe37782a259c19b, type: 3}
+  impulseSource: {fileID: 1246557494}
+  animator: {fileID: 1186748589}
+  srDirections: {fileID: 1186748590}
+  startPos: {x: 0, y: 0}
+  endPos: {x: 0, y: 0}
+  t: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isWalking: 0
+  mousePos: {x: 0, y: 0}
+  tilemap: {fileID: 203688961}
+  cellPos: {x: 0, y: 0, z: 0}
+  pavement: {fileID: 11400000, guid: b52eb31537a3c0f4d9b909925745af72, type: 2}
+  crackedPavement: {fileID: 11400000, guid: bcf612aaeb488bf48b64a976b440426d, type: 2}
 --- !u!95 &1186748589
 Animator:
   serializedVersion: 7
