@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -7,7 +8,8 @@ public class TilemapStuff : MonoBehaviour
     public Tilemap tilemap;
     public Transform highlight;
 
-    public Tile flower; 
+    public Tile flower;
+    public CinemachineImpulseSource impulseSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +29,7 @@ public class TilemapStuff : MonoBehaviour
         {
             Debug.Log(tilemap.GetTile(cellPos)); 
             tilemap.SetTile(cellPos, flower);
+            impulseSource.GenerateImpulse(); 
         }
     }
 }
