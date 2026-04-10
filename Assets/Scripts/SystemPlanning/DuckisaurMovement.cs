@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +10,10 @@ public class DuckisaurMovement : MonoBehaviour
     public Vector2 movement;
 
     //JUMPING
-    public bool jumpingTime = false;
-    public float jumpSpeed = 1;
-    public float jumpStrength = 2;
+    public bool isJumping = false;
+    public float jumpSpeed;
     public float jumpHeight;
-    public float t = 0;
+    public Transform startPos; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,16 +36,53 @@ public class DuckisaurMovement : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed & !jumpingTime)
+        //calls the jump and land courtines when spacebar is pressed and if player is not already jumping
+        if (context.performed & !isJumping)
         {
-            StartCoroutine(JumpTime());
+            StartCoroutine(doTheJumping());
         }
 
     }
-
-    IEnumerator JumpTime()
+    //coroutine hub so players can only fall after they jump
+    IEnumerator doTheJumping()
     {
-        yield return null;
+        yield return Jump();
+        yield return Land();
     }
+    //coroutine that increases the player height based on the starting position of an empty game object set to the floor
+    IEnumerator Jump()
+    {
+        //set timer to 0
+        //increase timer during while statement
+        //set isJumping to true so players can't jump while jumping
+        //increase player position based on starting position and t
+        //multiple t to a jumpSpeed to increase jumpSpeed
+        //yield return null so coroutine functions properly
+        float t = 0;
+        while (t < jumpHeight)
+        {
+            isJumping = true; 
+            t += Time.deltaTime;
+            Vector2 jumpPos = transform.position;
+            jumpPos.y = startPos.position.y + t * jumpSpeed;
+            transform.position = jumpPos;
+            yield return null;
+        }    
+    }
+    //coroutine that decreases the player height based on the starting position of the current height determined at the jump's vertex
 
+    IEnumerator Land()
+    {
+        float t = 0;
+        float currentY = transform.position.y;
+        while (transform.position.y > startPos.position.y)
+        {
+            t -= Time.deltaTime;
+            Vector2 jumpPos = transform.position;
+            jumpPos.y = currentY + t * jumpSpeed;
+            transform.position = jumpPos;
+            yield return null;
+        }
+        isJumping = false;
+    }
 }
