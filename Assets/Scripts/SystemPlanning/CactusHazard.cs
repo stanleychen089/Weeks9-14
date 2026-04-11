@@ -1,10 +1,12 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CactusHazard : MonoBehaviour
 {
     public bool isInHazard = false;
+    public UnityEvent OnHazard;
     public List<SpriteRenderer> cactusSRs;
     public DuckisaurMovement playerMovement;
     public float penaltyTime = 2;
@@ -31,7 +33,7 @@ public class CactusHazard : MonoBehaviour
         }
         if (isInHazard)
         {
-            HazardEffect();
+            OnHazard.Invoke();
             t = 0;
         }
         else
@@ -44,7 +46,7 @@ public class CactusHazard : MonoBehaviour
         }
     }
 
-    void HazardEffect()
+    public void HazardEffect()
     {
         playerMovement.speed = 2;
 

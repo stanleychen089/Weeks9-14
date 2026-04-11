@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class Timer : MonoBehaviour
@@ -12,6 +13,7 @@ public class Timer : MonoBehaviour
     public float bestTime = 10000000;
     public Transform duckisaur;
     public SpriteRenderer finishLineSR;
+    public UnityEvent OnFinish;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,12 +29,7 @@ public class Timer : MonoBehaviour
         //update time to UI text
         if (finishLineSR.bounds.Contains(duckisaur.position))
         {
-            isFinished = true;
-            if (time < bestTime)
-            {
-                bestTime = time;
-                bestTimeDisplay.text = bestTime.ToString("F2");
-            }
+            OnFinish.Invoke();
         }
         //if the player has not finished, the time will increase and constantly update the text UI
         if (!isFinished)
@@ -42,8 +39,16 @@ public class Timer : MonoBehaviour
         }
         
     }
-
-    public void restartTimer()
+    public void UpdateBestTime()
+    {
+        isFinished = true;
+        if (time < bestTime)
+        {
+            bestTime = time;
+            bestTimeDisplay.text = bestTime.ToString("F2");
+        }
+    }
+    public void RestartTimer()
     {
         isFinished = false; 
         time = 0;
