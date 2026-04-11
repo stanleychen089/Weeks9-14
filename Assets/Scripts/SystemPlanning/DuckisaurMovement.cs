@@ -7,6 +7,7 @@ public class DuckisaurMovement : MonoBehaviour
 {
     //LEFT RIGHT MOVEMENT
     public float speed = 5;
+    public float defaultSpeed = 5;
     public Vector2 movement;
 
     //JUMPING
@@ -84,5 +85,14 @@ public class DuckisaurMovement : MonoBehaviour
             yield return null;
         }
         isJumping = false;
+    }
+
+    public void RestartPosition()
+    {
+        Debug.Log("Restart Pressed");
+       
+        transform.position = startPos.position;
+        speed = defaultSpeed;
+        
     }
 }
